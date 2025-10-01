@@ -7,6 +7,68 @@
 **************************************************************************************************	
 
 
+
+*************************************************
+*	@29,30 Setembro 2025	
+
+. o fw é escrito a partir do sw STM32CubeProgrammer
+. o fw a escrever tem de ser PYBV11-20250911-v1.26.1.hex
+
+. se:
+	1	- o fw for lido a partir de um u já programado
+		- utilizar-se essa leitura para fazer a escrita
+		- este método não funciona!!
+		
+	2 - abrir o ficheiro PYBV11-20250911-v1.26.1.hex
+		- programar este ficheiro
+		- a funcionalidade fica OK
+		- mas depois o ler do u o fw em memória, este não coincide com o .hex escrito
+	
+. conclusão:
+	- o STM32CubeProgrammer num processo 'normal' não deixa programmar em áreas de boot protegidas - bootloader fw
+	- o PYBV11-20250911-v1.26.1.hex escreve nessa área
+	>> seguir os passos em 2. para obter programação certa do u ST32F405
+. 
+
+
+
+*************************************************
+*	@29,30 Setembro 2025	
+
+https://www.st.com/en/development-tools/stm32cubeprog.html#get-software
+
+o u:
+STM32F405RGT6
+LQFP64 (10 × 10 mm)
+
+
+- o Boot q há para manobrar: 
+	Boot0
+	Boot1 sempre a 0
+
+Boot1	Boot0
+	0			0		Main Flash memory (user code)
+	0			1		System memory (ST bootloader)
+	1			0		SRAM (for debugging)
+	1			1		System memory (ST bootloader)
+
+
+BOOT0/VPP	pin#60
+	. na ORIGINAL Pdwn R15=100k; 
+		ligado a pinos externos P1		ok
+	
+	. no OEPS rev A : Pdwn R8=10k
+		não ligado a externo
+	
+
+PB2-BOOT1 		pin#28
+	. no ORIGINAL Pdwn R14 = 100k
+	. sem serteza de onde está R14
+	
+	. na OEPS rev A	=0 	Pdwn = R15=100k
+	
+
+	
 	
 *************************************************
 *	@10 Setembro 2025	
@@ -75,7 +137,7 @@ and a SW-DP (2-pin) interface."
 **********************************************
 * 26 Junho 2025
 *
->> MicroPython (antigo PyPhotometry)
+>> OE-Pyboard (antigo PyPhotometry)
 	
 		>> objectivo:
 		mudança na actual estrutura do projecto pyPhotometry
