@@ -6,7 +6,56 @@
 
 **************************************************************************************************	
 
+*************************************************
+*	@9 Outubro 2025	
+-  a rev.B foi renomeada para rev.B
+- dim: 33mm x 42mm
 
+
+
+
+*************************************************
+*	@6 Outubro 2025	
+
+IOs interface de pyBoard para pyPhotometry:
+		PC6-Y1			|		V+
+		PC7-Y2			|		3V3
+		PB8-Y3			|		GND
+		PB9-Y4			|		RST-SW
+		PB12-Y5			|		PB1-Y12
+		PB13-Y6			|		PB0-Y11
+		PB14-Y7			|		PB11-Y10
+		PB15-Y8			|		PB10-Y9
+		PB6-SCL-X9	|		PA7-X8
+		PB7-SDA-X10	|		PA6-X7
+		PC4-X11			|		PA5-X6
+		PC5-X12			|		PA4-X5
+		RST-SW			|		PA3-X4
+		GND				|		PA2-X3
+		3V3					|		PA1-X2
+		V+					|		PA0-X1
+		
+
+	
+
+
+
+*************************************************
+*	@1 Outubro 2025	
+
+>> início de rev.B
+	- modificar case de X2 - case em rev.A errada		OK
+	- modificar case de D2 - case SOD128 em rev.A errada		SOD-123 OK
+	- deixar os LEDs nos mesmos pinos q estavam em versões anteriores: Eagle v.1.0 1.1 etc		OK
+	- retirar header para programação JTAG		OK
+	- colocar jumper para 3V3 em BOOT0		OK
+	- verificar a questão Fab-layer vs Silk-layer para o deminator dos componentes 		...ainda a decidir pelo Filipe
+	
+	
+	- ver ordem/pins vs cor dos LEDs	soldados trocados; Schm & PCB	OK
+	
+	
+	
 
 *************************************************
 *	@29,30 Setembro 2025	
@@ -43,14 +92,14 @@ LQFP64 (10 × 10 mm)
 
 
 - o Boot q há para manobrar: 
-	Boot0
+	Boot0	- HÁ Q PODER MANOBRAR
 	Boot1 sempre a 0
 
-Boot1	Boot0
-	0			0		Main Flash memory (user code)
-	0			1		System memory (ST bootloader)
-	1			0		SRAM (for debugging)
-	1			1		System memory (ST bootloader)
+Boot0	Boot1	
+	0			0			Main Flash memory (user code)
+	1			0			System memory (ST bootloader)
+	0			1			SRAM (for debugging)
+	1			1			System memory (ST bootloader)
 
 
 BOOT0/VPP	pin#60
