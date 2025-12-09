@@ -1,0 +1,260 @@
+
+
+	https://github.com/davidpalma666/MicroPython-Fork
+	https://micropython.org/download/PYBV11/
+	https://micropython.org/resources/firmware/PYBV11-20250911-v1.26.1.hex
+	https://micropython.org/resources/Micro-Python-Windows-setup.pdf
+	
+	
+u:
+STM32F405RGT6
+
+STM32F405RGT6
+
+
+**************************************************************************************************	
+IF FILES GET CORRUPTED:
+
+Plug pyboard to computer to have supply
+Click and maintain USR
+Click and release RST
+Release USR when both LED orange+green are on
+Wait until red LED turns OFF
+Click and release the RST
+
+
+
+*************************************************
+*	@23 Outubro 2025	
+
+>> processo de programar o u ST
+
+		Get STM32Cubeprogrammer software - UI to programm microcontroller
+		https://www.st.com/en/development-tools/stm32cubeide.html
+
+		Connect/close jumper JP3 to set ST micro on programming mode :
+		Connect pyBoard USB to computer
+		Open STM32Cubeprogrammer software & choose USB interface to work with
+		1st ‘refresh’ button so it captures ST micro; then ‘connect’
+		get to ‘Erasing & Programming’ tab
+		browse for program .hex file
+		be sure about having 
+		correct .hex file
+		‘Verifying programming’ checked & ‘memory checksum’ to be unchecked
+		Final message will assure ST micro was programmed and final check was OK
+		remove jumper JP3; on next ON-OFF cycle STmicro will be running
+
+
+
+
+*************************************************
+*	@9 Outubro 2025	
+-  a rev.B foi renomeada para rev.A
+- dim: 33mm x 42mm
+
+
+
+
+*************************************************
+*	@6 Outubro 2025	
+
+IOs interface de pyBoard para pyPhotometry:
+		PC6=Y1				|		V+
+		PC7=Y2				|		3V3
+		PB8=Y3				|		GND
+		PB9=Y4				|		RST=SW
+		PB12=Y5				|		PB1=Y12
+		PB13=Y6				|		PB0=Y11
+		PB14=Y7				|		PB11=Y10
+		PB15=Y8				|		PB10=Y9
+		PB6=SCL=X9		|		PA7=X8
+		PB7=SDA=X10	|		PA6=X7
+		PC4=X11				|		PA5=X6
+		PC5=X12				|		PA4=X5
+		RST=SW				|		PA3=X4
+		GND					|		PA2=X3
+		3V3						|		PA1=X2
+		V+						|		PA0=X1
+		
+
+	
+
+
+
+*************************************************
+*	@1 Outubro 2025	
+
+>> início de rev.B
+	- modificar case de X2 - case em rev.A errada		OK
+	- modificar case de D2 - case SOD128 em rev.A errada		SOD-123 OK
+	- deixar os LEDs nos mesmos pinos q estavam em versões anteriores: Eagle v.1.0 1.1 etc		OK
+	- retirar header para programação JTAG		OK
+	- colocar jumper para 3V3 em BOOT0		OK
+	- verificar a questão Fab-layer vs Silk-layer para o deminator dos componentes 		...ainda a decidir pelo Filipe
+	
+	
+	- ver ordem/pins vs cor dos LEDs	soldados trocados; Schm & PCB	OK
+	
+	
+	
+
+*************************************************
+*	@29,30 Setembro 2025	
+
+. o fw é escrito a partir do sw STM32CubeProgrammer
+. o fw a escrever tem de ser PYBV11-20250911-v1.26.1.hex
+
+. se:
+	1	- o fw for lido a partir de um u já programado
+		- utilizar-se essa leitura para fazer a escrita
+		- este método não funciona!!
+		
+	2 - abrir o ficheiro PYBV11-20250911-v1.26.1.hex
+			https://micropython.org/resources/firmware/PARTICLE_XENON-20250911-v1.26.1.hex
+		- programar este ficheiro
+		- a funcionalidade fica OK
+		- mas depois o ler do u o fw em memória, este não coincide com o .hex escrito
+	
+. conclusão:
+	- o STM32CubeProgrammer num processo 'normal' não deixa programmar em áreas de boot protegidas - bootloader fw
+	- o PYBV11-20250911-v1.26.1.hex escreve nessa área
+	>> seguir os passos em 2. para obter programação certa do u ST32F405
+. 
+
+
+
+*************************************************
+*	@29,30 Setembro 2025	
+
+https://www.st.com/en/development-tools/stm32cubeprog.html#get-software
+
+o u:
+STM32F405RGT6
+LQFP64 (10 × 10 mm)
+
+
+- o Boot q há para manobrar: 
+	Boot0	- HÁ Q PODER MANOBRAR
+	Boot1 sempre a 0
+
+Boot0	Boot1	
+	0			0			Main Flash memory (user code)
+	1			0			System memory (ST bootloader)
+	0			1			SRAM (for debugging)
+	1			1			System memory (ST bootloader)
+
+
+BOOT0/VPP	pin#60
+	. na ORIGINAL Pdwn R15=100k; 
+		ligado a pinos externos P1		ok
+	
+	. no OEPS rev A : Pdwn R8=10k
+		não ligado a externo
+	
+
+PB2-BOOT1 		pin#28
+	. no ORIGINAL Pdwn R14 = 100k
+	. sem serteza de onde está R14
+	
+	. na OEPS rev A	=0 	Pdwn = R15=100k
+	
+
+	
+	
+*************************************************
+*	@10 Setembro 2025	
+
+ - em espera de novos OEPS PN para finalizar BOM
+ 
+ 
+
+*************************************************
+*	@4 Setembro 2025
+
+- feito ontem commit da versão desenhada; em espera de MPN-OEPSPN
+- na v.1.1 a versão utilizada no produto 
+	. há circuito de PFET & PWR-Switchin
+	. em versões anteriores & posteriores não
+	. este módulo circuito não faz sentido existir:
+		- não funcionaria para q devia fazer: alimetar pino VBatt qd houvesse PowerOFF & existisse Batt ligada
+	. em versões anteriores v.1.0 & posteriores v.4 este módulo não existe
+
+	=>> retirados módulos
+		. ficha J9 de onde adivinharia VBAT
+		. IC U3 de onde haveria controle energia (?)
+		. PFET Q1 no módulo controlo VBAT-Vin
+		
+		
+*************************************************
+*	@2 Setembro 2025
+
+- retirado cartão SD da PCB
+- acelerometro da PCB
+
+
+. "debug port that combines a JTAG-DP (5-pin) interface 
+and a SW-DP (2-pin) interface."
+
+
+- PINOS JTAG expostos para programar:
+	
+	. PA13/					shared with Red LED		PA13-RED-P3
+		/JTAG-TMS		JTMS-SWDIO
+		/SWDIO 		
+
+	. PA14/					shared with Green LED		PA14-GRN
+		/JTAG-CLK
+		/SWCLCK		
+	
+	. PB4/					shared with Blue LED		PB4-BLU
+		/JTAG-TRST
+
+	. PA15/					shared with Yellow LED
+		/JTAG-TDI 	(??)	
+
+
+
+
+**********************************************
+* 1 Setembro 2025
+*
+- criado repositório no Github
+- notas de dúvidas no próprio fich de Scm
+- em processo de routing
+
+
+
+
+**********************************************
+* 26 Junho 2025
+*
+>> OE-Pyboard (antigo PyPhotometry)
+	
+		>> objectivo:
+		mudança na actual estrutura do projecto pyPhotometry
+		- consiste em 2 boards:
+			. pyPhotometry 2.0 (main board) + micropython PYB v.1.1 (inteface board) - open source projects
+		
+		- objectivo final:
+			. ter as 2 boards integradas numa só - passa a ser um nosso self-product
+		
+		- 1º passo:
+			. redesenhar a board de interface Mycropython PYB.v1.1
+				: nova board (OEPS) Microphyton v.1.x
+			. com esta nova interface-board produzida, verificar se a funcionalidade com a main continua OK
+			
+		- 2º passo
+			. redesenhar a main board pyPhotometry com a nova (OEPS) Mycrophyton v1.x já integrada (nome projecto/board??)
+				: verficar se o desenho com as 2 boards integradas continua OK
+		
+
+
+
+
+
+>> links iniciais enviados pelo Filepe:
+	PDF com PyBv.1.1 .pdf
+	https://store.micropython.org/product/PYBv1.1
+	https://micropython.org/download/PYBV11/
+	https://www.adafruit.com/product/2390
+	

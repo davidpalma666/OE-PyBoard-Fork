@@ -1,0 +1,42 @@
+### Footprint positions - created on 2025-11-21T09:53:22+0000 ###
+### Printed by KiCad version 9.0.4
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val         Package                                      PosX       PosY       Rot  Side
+J1        Conn_01x08  PinHeader_1x16_P2.54mm_Vertical           61.0300    93.6874    0.0000  top
+J2        Conn_01x08  PinHeader_1x16_P2.54mm_Vertical           88.9640    93.6994    0.0000  top
+TP1       TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    96.3110    0.0000  top
+TP2       TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    96.2994    0.0000  top
+TP3       TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    93.4243    0.0000  top
+TP4       TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    93.4127    0.0000  top
+TP5       TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    90.5376    0.0000  top
+TP6       TestPoint   TestPoint_Keystone_5000-5004_Miniature    99.4640    90.5260    0.0000  top
+TP7       TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    87.6510    0.0000  top
+TP8       TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    87.6394    0.0000  top
+TP9       TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    84.7643    0.0000  top
+TP10      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    84.7527    0.0000  top
+TP11      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    81.8776    0.0000  top
+TP12      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    81.8660    0.0000  top
+TP13      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    78.9910    0.0000  top
+TP14      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    78.9794    0.0000  top
+TP15      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    76.1043    0.0000  top
+TP16      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    76.0927    0.0000  top
+TP17      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    73.2176    0.0000  top
+TP18      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    73.2060    0.0000  top
+TP19      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    70.3310    0.0000  top
+TP20      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    70.3194    0.0000  top
+TP21      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    67.4443    0.0000  top
+TP22      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    67.4327    0.0000  top
+TP23      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    64.5576    0.0000  top
+TP24      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    64.5460    0.0000  top
+TP25      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    61.6710    0.0000  top
+TP26      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    61.6594    0.0000  top
+TP27      TestPoint   TestPoint_Keystone_5000-5004_Miniature    50.4407    58.7843    0.0000  top
+TP28      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    58.7727    0.0000  top
+TP29      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    55.8976    0.0000  top
+TP30      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    55.8860    0.0000  top
+TP31      TestPoint   TestPoint_Keystone_5015_Micro_Mini        50.4407    53.0110    0.0000  top
+TP32      TestPoint   TestPoint_Keystone_5015_Micro_Mini        99.4640    52.9994    0.0000  top
+~{RST}#1  SW_SPST     SW_SPST_TL3305B                          111.4640    89.1994   90.0000  top
+~{RST}#2  SW_SPST     SW_SPST_TL3305B                           38.4140    59.5494   90.0000  top
+## End
